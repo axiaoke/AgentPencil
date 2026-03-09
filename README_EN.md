@@ -1,8 +1,8 @@
-# 🚀 AgentPress (知己) v1.1.1
+# 🚀 AgentPencil (知己笔) v1.1.3
 
 [简体中文](./README.md) | **English**
 
-A minimalist, lightning-fast, AI/Agent-native modern blog system. "知己" (Zhiji - meaning a close, understanding friend) implies that it is not just a publishing tool, but a smart creative companion that understands you.
+A minimalist, lightning-fast, AI/Agent-native modern blog system. "知己笔" (Zhijibi - meaning a close, understanding friend's pen) implies that it is not just a publishing tool, but a smart creative companion that understands you.
 
 Built with Node.js + MySQL, the frontend uses Vue 3 + native CSS. No complex build tools are required—it works right out of the box. Its core is centered on the **AI-Native experience**, featuring built-in LLM intelligent assistance, dual-mode editors (Markdown / HTML), an Agent API, fully automated SEO, and a smooth theme system.
 
@@ -143,8 +143,8 @@ blog/
 
 ### 1. Get Source Code
 ```bash
-git clone https://github.com/axiaoke/agentpress.git
-cd agentpress
+git clone https://github.com/axiaoke/agentpencil.git
+cd agentpencil
 ```
 
 ### 2. Initialize Project
@@ -266,7 +266,7 @@ Comment moderation relies on structural assessment matrices. Create a new Agent 
 
 ## 🔄 Migrate from WordPress
 
-AgentPress *(Zhiji)* embeds an extremely intelligent and scalable WordPress migrator tool: `migrate.js`. Say goodbye to clunky WordPress data sizes and hello to seamless migration!
+AgentPencil *(Zhijibi)* embeds an extremely intelligent and scalable WordPress migrator tool: `migrate.js`. Say goodbye to clunky WordPress data sizes and hello to seamless migration!
 
 ### Prerequisites
 
@@ -408,7 +408,7 @@ certbot --nginx -d blog.example.com
 
 MIT License
 
-Thank you for choosing **AgentPress (Zhiji)**, turning your digital universe into brilliant reflections of thoughts and code mappings.
+Thank you for choosing **AgentPencil (Zhijibi)**, turning your digital universe into brilliant reflections of thoughts and code mappings.
 
 ---
 

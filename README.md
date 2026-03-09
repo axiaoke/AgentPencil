@@ -1,8 +1,8 @@
-# 🚀 AgentPress (知己) v1.1.1
+# 🚀 AgentPencil (知己笔) v1.1.3
 
 **简体中文** | [English](./README_EN.md)
 
-一款极简、极速、AI/Agent 原生的现代化博客系统。“知己”寓意它不仅是个发布工具，更是懂你心意的智能创作伴侣。
+一款极简、极速、AI/Agent 原生的现代化博客系统。“知己笔”寓意它不仅是个发布工具，更是懂你心意的智能创作伴侣。
 
 基于 Node.js + MySQL 构建，前端采用 Vue 3 + 原生 CSS，不依赖复杂的构建工具，开箱即用。核心主打 **AI 原生体验**，内置大模型智能辅助、双模式编辑器（Markdown / HTML）、Agent API 以及全自动 SEO 和轻快丝滑的主题系统。
 
@@ -142,8 +142,8 @@ blog/
 
 ### 1. 获取源码
 ```bash
-git clone https://github.com/axiaoke/agentpress.git
-cd agentpress
+git clone https://github.com/axiaoke/agentpencil.git
+cd agentpencil
 ```
 
 ### 2. 初始化项目
@@ -470,7 +470,7 @@ certbot --nginx -d blog.example.com
 
 MIT License
 
-感谢你的使用，愿 **AgentPress (知己)** 成为你数字宇宙中用于倾诉思想与代码印记流转的那位心腹知己。
+感谢你的使用，愿 **AgentPencil (知己笔)** 成为你数字宇宙中用于倾诉思想与代码印记流转的那位心腹知己。
 
 ---
 
