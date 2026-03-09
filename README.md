@@ -1,5 +1,7 @@
 # 🚀 AgentPress (知己) v1.1.0
 
+**简体中文** | [English](./README_EN.md)
+
 一款极简、极速、AI/Agent 原生的现代化博客系统。“知己”寓意它不仅是个发布工具，更是懂你心意的智能创作伴侣。
 
 基于 Node.js + MySQL 构建，前端采用 Vue 3 + 原生 CSS，不依赖复杂的构建工具，开箱即用。核心主打 **AI 原生体验**，内置大模型智能辅助、双模式编辑器（Markdown / HTML）、Agent API 以及全自动 SEO 和轻快丝滑的主题系统。
