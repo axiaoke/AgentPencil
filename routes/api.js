@@ -97,13 +97,14 @@ router.get('/posts/:id/comments', async (req, res) => {
 // 提交评论（含 AI 审核 + 限流）
 router.post('/posts/:id/comments', commentLimiter, async (req, res) => {
     try {
-        const { author_name, author_email, author_url, content } = req.body;
+        const { parent_id, author_name, author_email, author_url, content } = req.body;
         if (!author_name || !content) {
             return res.status(400).json({ code: 400, message: '名称和内容不能为空' });
         }
 
         const result = await commentService.submit({
             postId: parseInt(req.params.id),
+            parentId: parent_id ? parseInt(parent_id) : null,
             author_name,
             author_email,
             author_url,

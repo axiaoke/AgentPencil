@@ -18,11 +18,19 @@ const commentService = {
     /**
      * 提交评论（含 AI 审核）
      */
-    async submit({ postId, author_name, author_email, author_url, content, isAgent, agentToken, ipAddress }) {
+    async submit({ postId, parentId, author_name, author_email, author_url, content, isAgent, agentToken, ipAddress }) {
         // 检查文章是否存在
         const exists = await Post.existsPublished(postId);
         if (!exists) {
             return { error: '文章不存在', code: 404 };
+        }
+
+        // 检查父评论是否存在（如果是回复）
+        if (parentId) {
+            const parentComment = await Comment.findById(parentId);
+            if (!parentComment || parentComment.post_id !== postId) {
+                return { error: '父评论不存在', code: 404 };
+            }
         }
 
         // AI 审核
@@ -47,6 +55,7 @@ const commentService = {
 
         const commentId = await Comment.create({
             post_id: postId,
+            parent_id: parentId || null,
             author_name,
             author_email: author_email || '',
             author_url: author_url || '',

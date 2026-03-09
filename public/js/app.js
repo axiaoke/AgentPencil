@@ -339,6 +339,58 @@ const app = createApp({
                 console.error('Failed to load comments:', e);
             }
         }
+        const replyTo = ref(null);
+
+        function setReply(comment) {
+            replyTo.value = comment;
+            nextTick(() => {
+                const el = document.getElementById('commentForm_content');
+                if (el) el.focus();
+            });
+        }
+
+        function cancelReply() {
+            replyTo.value = null;
+        }
+
+        const flattenedComments = computed(() => {
+            const map = {};
+            const roots = [];
+            comments.value.forEach(c => {
+                c.replies = [];
+                map[c.id] = c;
+            });
+            comments.value.forEach(c => {
+                if (c.parent_id && map[c.parent_id]) {
+                    map[c.parent_id].replies.push(c);
+                } else {
+                    roots.push(c);
+                }
+            });
+            const result = [];
+            function traverse(node, depth, isLast, isFirstReply, activePaths) {
+                node.depth = depth;
+                node.isLast = isLast;
+                node.isFirstReply = isFirstReply;
+                node.activePaths = [...activePaths];
+                result.push(node);
+
+                const len = node.replies.length;
+                const nextPaths = [...activePaths];
+                // 如果当前节点不是所在的最后一项，则它的所有子孙节点都需要在当前深度画一条垂直线
+                if (!isLast && depth > 0) {
+                    nextPaths.push(depth);
+                }
+
+                node.replies.forEach((r, idx) => {
+                    traverse(r, depth + 1, idx === len - 1, idx === 0, nextPaths);
+                });
+            }
+            const rootLen = roots.length;
+            roots.forEach((r, idx) => traverse(r, 0, idx === rootLen - 1, true, []));
+            return result;
+        });
+
 
         // --- Submit Comment ---
         async function submitComment() {
@@ -363,6 +415,7 @@ const app = createApp({
                 const res = await api(`/api/posts/${currentPost.id}/comments`, {
                     method: 'POST',
                     body: JSON.stringify({
+                        parent_id: replyTo.value?.id || null,
                         author_name: author,
                         author_email: commentForm.author_email.trim(),
                         content: content
@@ -375,6 +428,7 @@ const app = createApp({
 
                     showToast('评论提交成功' + (res.data.status === 'approved' ? '' : '，等待审核'), 'success');
                     Object.keys(commentForm).forEach(k => commentForm[k] = '');
+                    replyTo.value = null;
                     if (res.data.status) {
                         aiModalData.status = res.data.status;
                         aiModalData.review = res.data.ai_review || (res.data.status === 'approved' ? 'AI 审核通过：内容积极健康，感谢您的分享！' : 'AI 正在深度审核中，请耐心等待管理员复核。');
@@ -553,7 +607,6 @@ const app = createApp({
                 }
             });
         });
-
         return {
             ICONS,
             currentView,
@@ -567,6 +620,10 @@ const app = createApp({
             comments,
             commentForm,
             submittingComment,
+            replyTo,
+            setReply,
+            cancelReply,
+            flattenedComments,
             toast,
             renderedContent,
             renderedAboutContent,

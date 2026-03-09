@@ -107,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `post_id` INT UNSIGNED NOT NULL COMMENT '关联文章ID',
+  `parent_id` INT UNSIGNED DEFAULT NULL COMMENT '父评论ID',
   `author_name` VARCHAR(100) NOT NULL COMMENT '评论者名称',
   `author_email` VARCHAR(200) DEFAULT '' COMMENT '评论者邮箱',
   `author_url` VARCHAR(500) DEFAULT '' COMMENT '评论者网址',
@@ -120,10 +121,12 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_post_id` (`post_id`),
+  KEY `idx_parent_id` (`parent_id`),
   KEY `idx_status` (`status`),
   KEY `idx_created_at` (`created_at`),
   KEY `idx_ip_address` (`ip_address`),
-  CONSTRAINT `fk_comment_post` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
+  CONSTRAINT `fk_comment_post` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_comment_parent` FOREIGN KEY (`parent_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='评论表';
 
 SET FOREIGN_KEY_CHECKS = 1;

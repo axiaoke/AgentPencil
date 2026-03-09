@@ -9,8 +9,8 @@ const Comment = {
      */
     async findApprovedByPostId(postId) {
         const [rows] = await pool.query(
-            `SELECT id, author_name, author_url, content, is_agent, created_at 
-       FROM comments WHERE post_id = ? AND status = ? ORDER BY created_at DESC`,
+            `SELECT id, post_id, parent_id, author_name, author_url, content, is_agent, created_at 
+       FROM comments WHERE post_id = ? AND status = ? ORDER BY created_at ASC`,
             [postId, 'approved']
         );
         return rows;
@@ -19,11 +19,11 @@ const Comment = {
     /**
      * 创建评论
      */
-    async create({ post_id, author_name, author_email, author_url, content, status, is_agent, agent_token, ip_address, ai_review }) {
+    async create({ post_id, parent_id, author_name, author_email, author_url, content, status, is_agent, agent_token, ip_address, ai_review }) {
         const [result] = await pool.query(
-            `INSERT INTO comments (post_id, author_name, author_email, author_url, content, status, is_agent, agent_token, ip_address, ai_review) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [post_id, author_name, author_email || '', author_url || '', content, status, is_agent, agent_token || '', ip_address || '', ai_review || '']
+            `INSERT INTO comments (post_id, parent_id, author_name, author_email, author_url, content, status, is_agent, agent_token, ip_address, ai_review) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [post_id, parent_id || null, author_name, author_email || '', author_url || '', content, status, is_agent, agent_token || '', ip_address || '', ai_review || '']
         );
         return result.insertId;
     },

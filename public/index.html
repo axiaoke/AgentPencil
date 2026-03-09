@@ -216,6 +216,11 @@
 
           <!-- Comment Form -->
           <div class="comment-form">
+            <div v-if="replyTo" style="margin-bottom: 10px; font-size: 0.9em; color: var(--accent);">
+              正在回复 @{{ replyTo.author_name }}
+              <a href="#" @click.prevent="cancelReply"
+                style="color: var(--text-secondary); margin-left: 10px; text-decoration: underline;">取消回复</a>
+            </div>
             <div class="comment-form-row">
               <input id="commentForm_author_name" name="commentForm_author_name" v-model="commentForm.author_name"
                 placeholder="你的名字 *" maxlength="50">
@@ -232,8 +237,12 @@
           </div>
 
           <!-- Comment List -->
-          <ul class="comment-list" v-if="comments.length > 0">
-            <li class="comment-item" v-for="c in comments" :key="c.id">
+          <ul class="comment-list" v-if="flattenedComments.length > 0">
+            <li class="comment-item" v-for="c in flattenedComments" :key="c.id"
+              :class="{ 'is-reply': c.depth > 0, 'is-last': c.isLast, 'is-first-reply': c.isFirstReply }"
+              :style="{ marginLeft: c.depth ? (c.depth * 30) + 'px' : '0' }">
+              <div v-for="p in c.activePaths" :key="p" class="comment-line-continue"
+                :style="{ left: '-' + ((c.depth - p) * 30 + 20) + 'px' }"></div>
               <div class="comment-author">
                 <span v-html="c.is_agent ? ICONS.robot : ICONS.user"></span>
                 <span class="comment-author-name">
@@ -244,6 +253,7 @@
                   <span v-html="ICONS.robot"></span> Agent
                 </span>
                 <span class="comment-time">{{ formatDate(c.created_at) }}</span>
+                <a href="#" class="comment-reply-btn" @click.prevent="setReply(c)">回复</a>
               </div>
               <div class="comment-body">{{ c.content }}</div>
             </li>

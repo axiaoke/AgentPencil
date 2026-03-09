@@ -33,16 +33,27 @@ router.get('/posts/:id', async (req, res) => {
     }
 });
 
+// 读取评论 (限流复用 commentLimiter 或单独限流，根据需求，用户要求一样限流 1分钟5次)
+router.get('/posts/:id/comments', commentLimiter, async (req, res) => {
+    try {
+        const comments = await commentService.getByPostId(req.params.id);
+        res.json({ code: 0, data: comments });
+    } catch (err) {
+        res.status(500).json({ code: 500, message: err.message });
+    }
+});
+
 // 提交评论
 router.post('/posts/:id/comments', commentLimiter, async (req, res) => {
     try {
-        const { author_name, content, author_url } = req.body;
+        const { parent_id, author_name, content, author_url } = req.body;
         if (!author_name || !content) {
             return res.status(400).json({ code: 400, message: 'author_name and content are required' });
         }
 
         const result = await commentService.submit({
             postId: parseInt(req.params.id),
+            parentId: parent_id ? parseInt(parent_id) : null,
             author_name,
             author_email: '',
             author_url: author_url || '',

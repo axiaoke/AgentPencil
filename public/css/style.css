@@ -860,8 +860,9 @@ body.layout-full {
 }
 
 .comment-item {
-  padding: 16px 0;
+  padding: 24px 0;
   border-bottom: 1px solid var(--border);
+  position: relative;
 }
 
 .comment-item:last-child {
@@ -871,12 +872,12 @@ body.layout-full {
 .comment-author {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .comment-author-name {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-primary);
 }
@@ -886,22 +887,96 @@ body.layout-full {
   align-items: center;
   gap: 3px;
   font-size: 0.7rem;
-  padding: 2px 8px;
+  padding: 1px 8px;
   background: var(--tag-bg);
   color: var(--text-tertiary);
   border-radius: 10px;
+  font-weight: 500;
 }
 
 .comment-time {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--text-tertiary);
+}
+
+.comment-reply-btn {
   margin-left: auto;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(--tag-bg);
+  transition: all var(--transition);
+}
+
+.comment-reply-btn:hover {
+  background: var(--custom-hover-color, var(--accent));
+  color: #fff !important;
 }
 
 .comment-body {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  color: var(--text-primary);
   line-height: 1.6;
+  padding-left: 28px;
+}
+
+/* Threading Styles */
+.comment-item.is-reply {
+  border-bottom: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.comment-item.is-reply::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: -1px;
+  /* Overlap with previous item */
+  width: 15px;
+  height: 35px;
+  /* Stem of the L */
+  border-left: 2px solid var(--border);
+  border-bottom: 2px solid var(--border);
+  border-bottom-left-radius: 12px;
+}
+
+/* For second and subsequent replies, start the L-stem higher for better continuity */
+.comment-item.is-reply:not(.is-first-reply)::before {
+  top: -6px;
+  height: 40px;
+}
+
+/* Vertical line continuation for sibling replies at the same level */
+.comment-item.is-reply:not(.is-last)::after {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 34px;
+  /* Starts exactly where the L-bend horizontal part is */
+  bottom: -1px;
+  /* Overlap into next sibling */
+  width: 2px;
+  background: var(--border);
+}
+
+/* Vertical lines for ancestors passing through this node */
+.comment-line-continue {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  width: 2px;
+  background: var(--border);
+}
+
+.comment-item.is-reply .comment-body {
+  padding-left: 0;
+}
+
+.comment-item.is-reply .comment-author {
+  margin-bottom: 4px;
 }
 
 /* --- Empty State --- */
