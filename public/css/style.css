@@ -1192,7 +1192,7 @@ body.layout-full {
 
 .search-result-cat {
   background: var(--accent);
-  color: #fff;
+  color: var(--bg);
   padding: 1px 8px;
   border-radius: 4px;
   font-size: 0.7rem;

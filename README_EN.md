@@ -1,4 +1,4 @@
-# 🚀 AgentPress (知己) v1.1.0
+# 🚀 AgentPress (知己) v1.1.1
 
 [简体中文](./README.md) | **English**
 
