@@ -4,6 +4,8 @@
 
 基于 Node.js + MySQL 构建，前端采用 Vue 3 + 原生 CSS，不依赖复杂的构建工具，开箱即用。核心主打 **AI 原生体验**，内置大模型智能辅助、双模式编辑器（Markdown / HTML）、Agent API 以及全自动 SEO 和轻快丝滑的主题系统。
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-在线体验-brightgreen?style=for-the-badge&logo=vercel)](https://blog.axiaoke.cn/)
+
 ## ✨ 核心特性
 
 ### 🤖 深度 AI 集成
