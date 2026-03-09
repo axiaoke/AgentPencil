@@ -476,10 +476,17 @@ MIT License
 
 ## 🙏 致谢
 
-- [Vue.js](https://vuejs.org/) - 渐进式 JavaScript 框架
+- [Vue.js](https://vuejs.org/) (v3) (MIT License) - 渐进式 JavaScript 框架
 - [Vditor](https://b3log.org/vditor/) - 浏览器端 Markdown 编辑器
 - [Quill](https://quilljs.com/) - 现代化富文本编辑器
 - [Marked](https://marked.js.org/) - Markdown 解析器
-- [Express](https://expressjs.com/) - Node.js Web 框架
+- [Express](https://expressjs.com/) (MIT License) - 快速、不带偏见的 Node.js Web 框架
 - [Sharp](https://sharp.pixelplumbing.com/) - 高性能图片处理
 - [阿里云百炼](https://bailian.console.alibabacloud.com/) - AI 大模型平台
+- [MySQL2](https://github.com/sidorares/node-mysql2) (MIT License) - Node.js 的 MySQL 客户端
+- [Bcrypt.js](https://github.com/dcodeIO/bcrypt.js) (MIT License) - 用于密码哈希的库
+- [JSONWebToken](https://github.com/auth0/node-jsonwebtoken) (MIT License) - JWT 的 Node.js 实现
+- [Multer](https://github.com/expressjs/multer) (MIT License) - 处理 multipart/form-data 的中间件
+- [Dotenv](https://github.com/motdotla/dotenv) (BSD-2-Clause License) - 零依赖环境变量加载器
+- [Cors](https://github.com/expressjs/cors) (MIT License) - Express CORS 中间件
+- [shadcn/ui](https://ui.shadcn.com/) (MIT License) - 优秀的 UI 组件库设计规范与实现参考

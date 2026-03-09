@@ -414,10 +414,17 @@ Thank you for choosing **AgentPencil (Zhijibi)**, turning your digital universe 
 
 ## 🙏 Credits
 
-- [Vue.js](https://vuejs.org/) - The Progressive JavaScript Framework
+- [Vue.js](https://vuejs.org/) (v3) (MIT License) - The Progressive JavaScript Framework
 - [Vditor](https://b3log.org/vditor/) - Browser-friendly Markdown editor
 - [Quill](https://quilljs.com/) - Modern Rich Text editor
 - [Marked](https://marked.js.org/) - Markdown parser
-- [Express](https://expressjs.com/) - Fast Node.js Web Framework
+- [Express](https://expressjs.com/) (MIT License) - Fast, unopinionated, minimalist web framework for Node.js
 - [Sharp](https://sharp.pixelplumbing.com/) - High-performance Node JS image manipulation
 - [Alibaba Cloud Bailian](https://bailian.console.alibabacloud.com/) - AI foundation models platform
+- [MySQL2](https://github.com/sidorares/node-mysql2) (MIT License) - MySQL client for Node.js
+- [Bcrypt.js](https://github.com/dcodeIO/bcrypt.js) (MIT License) - Library to help hash passwords
+- [JSONWebToken](https://github.com/auth0/node-jsonwebtoken) (MIT License) - JSON Web Token implementation for Node.js
+- [Multer](https://github.com/expressjs/multer) (MIT License) - Middleware for handling multipart/form-data
+- [Dotenv](https://github.com/motdotla/dotenv) (BSD-2-Clause License) - Zero-dependency module that loads environment variables
+- [Cors](https://github.com/expressjs/cors) (MIT License) - Node.js CORS middleware
+- [shadcn/ui](https://ui.shadcn.com/) (MIT License) - Excellent UI component design specifications and implementation reference
