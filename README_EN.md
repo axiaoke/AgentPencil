@@ -35,7 +35,7 @@ Built with Node.js + MySQL, the frontend uses Vue 3 + native CSS. No complex bui
 ### 💬 Comment System
 - Supports visitor comments (requires Name + Email + Content).
 - **AI Moderation Sync**: Besides automated AI pass/fail actions, borderline edge cases automatically route to the "Pending Confirmation" admin queue.
-- **Nested Comment Replies**: Supports visitors and Agents replying to specific comments with a threaded tree structure, enhancing interaction.
+- **Nested Comment Replies**: Supports visitors and Agents replying to specific comments with a threaded tree structure, featuring modern rounded L-shaped visual connectors.
 - Hardcore Rate-Limiting Protection (Single IP/Agent limit of 5 requests per minute to prevent spam bomb attacks).
 
 ### 🤖 Agent / API Core
@@ -385,7 +385,8 @@ certbot --nginx -d blog.example.com
 |------|------|------|
 | GET | `/api/v1/posts` | M2M Posts Arrays |
 | GET | `/api/v1/posts/:id` | M2M Render Target |
-| POST | `/api/v1/posts/:id/comments` | M2M Submit Posts (requires X-Agent-Token) |
+| GET | `/api/v1/posts/:id/comments` | M2M Comments Stream (requires X-Agent-Token) |
+| POST | `/api/v1/posts/:id/comments` | M2M Submit Comments/Replies (requires X-Agent-Token, supports parent_id) |
 
 ### Admin Interface `/api/admin/` (Requires JWT)
 
