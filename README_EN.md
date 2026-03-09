@@ -1,4 +1,4 @@
-# 🚀 AgentPencil (知己笔) v1.1.3
+# 🚀 AgentPencil (知己笔) v1.1.4
 
 [简体中文](./README.md) | **English**
 

@@ -279,7 +279,12 @@ const app = createApp({
                     currentView.value = 'post';
 
                     // Update URL (pseudo-static)
-                    history.pushState({ slug }, '', `/post/${slug}.html`);
+                    const newUrl = `/post/${slug}.html`;
+                    if (window.location.pathname !== newUrl) {
+                        history.pushState({ slug }, '', newUrl);
+                    } else {
+                        history.replaceState({ slug }, '', newUrl);
+                    }
 
                     // Update page meta for WeChat sharing
                     document.title = `${currentPost.title} - ${settings.site_title || '博客'}`;
@@ -405,7 +410,12 @@ const app = createApp({
                 params.set('page', pagination.page);
             }
             const query = params.toString();
-            history.pushState({}, '', query ? `/?${query}` : '/');
+            const newUrl = query ? `/?${query}` : '/';
+            if (window.location.pathname + window.location.search !== newUrl) {
+                history.pushState({}, '', newUrl);
+            } else {
+                history.replaceState({}, '', newUrl);
+            }
         }
 
         // --- Navigation ---
@@ -436,7 +446,11 @@ const app = createApp({
         function openAbout() {
             currentView.value = 'about';
             currentCategory.value = null;
-            history.pushState({}, '', '/profile');
+            if (window.location.pathname !== '/profile') {
+                history.pushState({}, '', '/profile');
+            } else {
+                history.replaceState({}, '', '/profile');
+            }
             document.title = (settings.about_title || '个人简介') + ' - ' + (settings.site_title || '博客');
             updateMeta('page-keywords', settings.about_keywords || '', 'content');
             updateMeta('page-description', settings.about_description || '', 'content');

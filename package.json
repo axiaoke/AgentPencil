@@ -1,6 +1,6 @@
 {
-  "name": "agentpress",
-  "version": "1.1.1",
+  "name": "agentpencil",
+  "version": "1.1.4",
   "description": "极简、极速、AI/Agent 原生的现代化博客系统",
   "main": "server.js",
   "scripts": {
