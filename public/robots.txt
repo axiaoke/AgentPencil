@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /post/
+Allow: /api/
+Allow: /images/
+
+Disallow: /admin/
+Disallow: /api/admin/
+
+Sitemap: /sitemap.xml

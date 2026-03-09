@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title id="page-title">A小可私人狗窝</title>
+  <meta name="description" id="page-description" content="斯人若彩虹，遇上方知有。">
+  <meta name="keywords" id="page-keywords" content="A小可,博客,技术,生活">
+
+  <!-- Open Graph / WeChat Share -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" id="og-title" content="A小可私人狗窝">
+  <meta property="og:description" id="og-description" content="斯人若彩虹，遇上方知有。">
+  <meta property="og:image" id="og-image" content="/images/logo.png">
+  <meta property="og:url" id="og-url" content="">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="manifest" href="/manifest.json">
+
+
+</head>
+
+<body>
+  <!-- Custom user variables -->
+  <div id="dynamic-style-container"></div>
+
+  <!-- WeChat Share Thumbnail (First Image in Body) -->
+  <div
+    style="margin: 0 auto; width: 0px; height: 0px; overflow: hidden; position: absolute; top: -9999px; z-index: -1;">
+    <img id="wechat-share-img" src="/images/logo.png" alt="微信分享缩略图"
+      style="display: block; width: 400px; height: 400px; object-fit: cover;">
+  </div>
+
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+  </div>
+
+  <div id="app">
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-top-row" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="logo-area" @click="goHome">
+          <img :src="settings.site_logo || '/images/logo.png'" :alt="settings.site_title"
+            @error="$event.target.style.display='none'">
+          <span class="site-name">{{ settings.site_title || '博客' }}</span>
+        </div>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <!-- Search -->
+          <button class="action-btn" @click="openSearch" title="搜索文章">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+
+          <!-- Layout Switcher -->
+          <button class="action-btn" @click="cycleLayout" :title="layoutModes[currentLayout].tip">
+            <svg v-if="currentLayout === 'narrow'" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <rect x="7" y="2" width="10" height="20" rx="2"></rect>
+            </svg>
+            <svg v-else-if="currentLayout === 'wide'" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <rect x="3" y="2" width="18" height="20" rx="2"></rect>
+            </svg>
+            <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="2" width="22" height="20" rx="2"></rect>
+            </svg>
+          </button>
+
+          <!-- Theme Toggle -->
+          <button class="action-btn" @click="toggleTheme" :title="isDark ? '切换到亮色模式' : '切换到暗色模式'">
+            <svg v-if="!isDark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <!-- Admin Access -->
+          <a href="/admin" class="action-btn" title="进入后台">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <p class="site-desc">{{ settings.site_description || '' }}</p>
+
+      <nav class="site-nav">
+        <a href="#" :class="{active: !currentCategory && currentView === 'home'}"
+          @click.prevent="filterCategory(null)">首页</a>
+        <a href="#" v-for="cat in categories" :key="cat.id"
+          :class="{active: currentCategory === cat.id && currentView === 'home'}"
+          @click.prevent="filterCategory(cat.id)">{{ cat.name }}</a>
+        <a href="/profile" :class="{active: currentView === 'about'}" @click.prevent="openAbout">{{ settings.about_title
+          || '个人简介' }}</a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Home: Post List -->
+      <div v-if="currentView === 'home'" class="fade-in">
+        <ul class="post-list" v-if="posts.length > 0">
+          <li class="post-item" v-for="post in posts" :key="post.id" @click="openPost(post)">
+            <div class="post-item-inner">
+              <div class="post-item-cover">
+                <img :src="post.cover_image ? post.cover_image + '?w=360' : '/images/thumbnail.png'" :alt="post.title"
+                  loading="lazy">
+              </div>
+              <div class="post-item-body">
+                <h2 class="post-item-title">{{ post.title }}</h2>
+                <p class="post-item-excerpt">{{ post.excerpt }}</p>
+                <div class="post-item-meta">
+                  <span class="post-item-author" style="display:inline-flex; align-items:center; gap:4px;">
+                    <img :src="post.author_avatar || settings.admin_avatar || '/images/avatar.jpg'" alt=""
+                      style="width:16px; height:16px; border-radius:50%; object-fit:cover;"
+                      @error="$event.target.src='/images/avatar.jpg'" />
+                    <span>{{ post.author_name || settings.site_author || 'Admin' }}</span>
+                  </span>
+                  <span v-html="ICONS.calendar"></span>
+                  <span>{{ formatDate(post.published_at || post.created_at) }}</span>
+                  <span v-html="ICONS.eye"></span>
+                  <span>{{ post.view_count }}</span>
+                  <span v-html="ICONS.comment"></span>
+                  <span>{{ post.comment_count }}</span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Empty State -->
+        <div class="empty-state" v-else-if="!loading">
+          <p>还没有文章</p>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" v-if="pagination.totalPages > 1">
+          <button @click="changePage(pagination.page - 1)" :disabled="pagination.page <= 1">
+            <span v-html="ICONS.arrowLeft"></span> 上一页
+          </button>
+          <span class="page-info">{{ pagination.page }} / {{ pagination.totalPages }}</span>
+          <button @click="changePage(pagination.page + 1)" :disabled="pagination.page >= pagination.totalPages">
+            下一页 <span v-html="ICONS.arrowRight"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Post Detail -->
+      <div v-if="currentView === 'post'" class="post-detail">
+
+        <div class="post-header">
+          <h1 class="post-title">{{ currentPost.title }}</h1>
+          <div class="post-meta">
+            <span class="post-author">
+              <img :src="currentPost.author_avatar || settings.admin_avatar || '/images/avatar.jpg'" alt="author"
+                @error="$event.target.src='/images/avatar.jpg'" />
+              {{ currentPost.author_name || settings.site_author || 'Admin' }}
+            </span>
+            <span v-html="ICONS.calendar"></span>
+            <span>{{ formatDate(currentPost.published_at || currentPost.created_at) }}</span>
+            <span v-html="ICONS.eye"></span>
+            <span>{{ currentPost.view_count }} 次阅读</span>
+            <span v-html="ICONS.comment"></span>
+            <span>{{ currentPost.comment_count }} 条评论</span>
+          </div>
+        </div>
+
+
+        <article class="post-content" v-html="renderedContent"></article>
+
+        <!-- Share Bar -->
+        <div class="share-bar">
+          <span class="share-label">分享</span>
+          <button class="share-btn" @click="copyLink">
+            <span v-html="ICONS.share"></span> 复制链接
+          </button>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+          <h3 class="comments-title">评论 ({{ comments.length }})</h3>
+
+          <!-- Comment Form -->
+          <div class="comment-form">
+            <div class="comment-form-row">
+              <input id="commentForm_author_name" name="commentForm_author_name" v-model="commentForm.author_name"
+                placeholder="你的名字 *" maxlength="50">
+              <input id="commentForm_author_email" name="commentForm_author_email" v-model="commentForm.author_email"
+                placeholder="邮箱（选填）" maxlength="100" type="email">
+            </div>
+            <textarea id="commentForm_content" name="commentForm_content" v-model="commentForm.content"
+              placeholder="写下你的想法..." maxlength="2000" rows="4"></textarea>
+            <button class="submit-btn" @click="submitComment" :disabled="submittingComment">
+              <span v-if="!submittingComment" v-html="ICONS.send"></span>
+              <span v-else v-html="ICONS.loading"></span>
+              {{ submittingComment ? '提交中...' : '发表评论' }}
+            </button>
+          </div>
+
+          <!-- Comment List -->
+          <ul class="comment-list" v-if="comments.length > 0">
+            <li class="comment-item" v-for="c in comments" :key="c.id">
+              <div class="comment-author">
+                <span v-html="c.is_agent ? ICONS.robot : ICONS.user"></span>
+                <span class="comment-author-name">
+                  <a v-if="c.author_url" :href="c.author_url" target="_blank">{{ c.author_name }}</a>
+                  <span v-else>{{ c.author_name }}</span>
+                </span>
+                <span class="comment-agent-badge" v-if="c.is_agent">
+                  <span v-html="ICONS.robot"></span> Agent
+                </span>
+                <span class="comment-time">{{ formatDate(c.created_at) }}</span>
+              </div>
+              <div class="comment-body">{{ c.content }}</div>
+            </li>
+          </ul>
+          <div class="empty-state" v-else style="padding: 28px 0;">
+            <p>暂无评论，来说两句吧</p>
+          </div>
+        </div>
+      </div>
+      <!-- About / Profile Page -->
+      <div v-if="currentView === 'about'" class="post-detail fade-in">
+        <div class="post-header" style="margin-top: 20px;">
+          <h1 class="post-title">{{ settings.about_title || '个人简介' }}</h1>
+        </div>
+        <article class="post-content" v-html="renderedAboutContent"></article>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer"
+      style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; align-items: center;">
+      <span>Copyright © {{ new Date().getFullYear() }} {{ settings.site_title || '博客' }}</span>
+      <template v-if="settings.icp_number">
+        <span>/</span>
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">{{ settings.icp_number }}</a>
+      </template>
+      <template v-if="settings.police_number">
+        <span>/</span>
+        <a :href="'https://beian.mps.gov.cn/#/query/webSearch?code=' + getPoliceCode(settings.police_number)"
+          target="_blank" rel="nofollow" style="display: inline-flex; align-items: center; gap: 4px;">
+          <img src="/images/mps.png" style="width: 16px; height: 16px; vertical-align: middle;" alt="图标">
+          {{ settings.police_number }}
+        </a>
+      </template>
+      <span>/</span>
+      <a href="/skills.md" target="_blank">Agent Skills</a>
+    </footer>
+
+    <!-- Image Zoom Overlay -->
+    <div class="image-zoom-overlay" :class="{ show: zoomImage }" @click="zoomImage = null">
+      <div class="image-zoom-container" @click.stop>
+        <img v-if="zoomImage" :src="zoomImage" class="image-zoom-img"
+          :style="{ transform: `scale(${imageZoomScale})` }">
+        <div class="image-zoom-controls">
+          <button @click="imageZoomScale += 0.2" title="放大"><span v-html="ICONS.zoomIn"></span></button>
+          <button @click="imageZoomScale = Math.max(0.2, imageZoomScale - 0.2)" title="缩小"><span
+              v-html="ICONS.zoomOut"></span></button>
+          <button @click="zoomImage = null" title="关闭"><span v-html="ICONS.close"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-overlay" :class="{ show: showSearch }" @click.self="closeSearch">
+      <div class="search-modal">
+        <div class="search-modal-header">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input id="search-input" name="search" class="search-modal-input" v-model="searchQuery"
+            @input="handleSearchInput" placeholder="搜索文章标题、内容或关键词..." @keydown.esc="closeSearch">
+          <button class="search-close-btn" @click="closeSearch">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="search-results" v-if="searchQuery.trim()">
+          <div v-if="searchLoading" class="search-loading">搜索中...</div>
+          <div v-else-if="searchResults.length === 0" class="search-empty">没有找到相关文章</div>
+          <div v-else class="search-result-list">
+            <div class="search-result-item" v-for="r in searchResults" :key="r.id" @click="selectSearchResult(r)">
+              <div class="search-result-title">{{ r.title }}</div>
+              <div class="search-result-meta">
+                <span v-if="r.category_name" class="search-result-cat">{{ r.category_name }}</span>
+                <span>{{ formatDate(r.published_at || r.created_at) }}</span>
+                <span>{{ r.view_count }} 次阅读</span>
+              </div>
+              <p class="search-result-excerpt" v-if="r.excerpt">{{ r.excerpt }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="search-footer" v-else>
+          <span>按 <kbd>ESC</kbd> 关闭</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <button class="back-to-top" :class="{ show: showBackToTop }" @click="scrollToTop">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+
+    <!-- AI Review Modal -->
+    <div class="ai-review-modal" :class="{ show: showAIModal }">
+      <div class="ai-review-content">
+        <h3 v-if="aiModalData.status === 'approved'" style="color: #10b981;">评论通过</h3>
+        <h3 v-else-if="aiModalData.status === 'rejected'" style="color: #ef4444;">评论未通过</h3>
+        <h3 v-else style="color: #f59e0b;">等待审核</h3>
+        <p>{{ aiModalData.review || aiModalData.message }}</p>
+        <button class="btn"
+          style="background: var(--tag-bg); color: var(--text-primary); border: none; padding: 8px 24px; border-radius: 6px; cursor: pointer; font-size: 0.9rem;"
+          @click="showAIModal = false">知道了</button>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" :class="{ show: toast.show }">{{ toast.message }}</div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/lib/vue/vue.global.prod.js"></script>
+  <script src="/lib/marked.min.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/icons.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+
+</html>

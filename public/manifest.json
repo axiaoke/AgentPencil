@@ -1,0 +1,16 @@
+{
+    "name": "博客",
+    "short_name": "博客",
+    "description": "一个极简、极速的个人博客",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fafafa",
+    "theme_color": "#111827",
+    "icons": [
+        {
+            "src": "/images/logo.png",
+            "sizes": "any",
+            "type": "image/png"
+        }
+    ]
+}
