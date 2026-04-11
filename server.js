@@ -49,19 +49,13 @@ app.get('/skills.md', (req, res) => {
 });
 
 // ============================================
-// 挂载所有 API 路由
+// 挂载所有路由模块（含前台 SSR 路由）
 // ============================================
 mountRoutes(app);
 
 // ============================================
-// HTML 伪静态路由 - 文章页面
-// ============================================
-app.get('/post/:slug.html', (req, res) => {
-  res.sendFile(path.join(config.paths.public, 'index.html'));
-});
-
-// ============================================
 // 静态文件服务 + 动态缩略图
+// index: false 防止直接返回 index.html，确保前台路由有机会注入 SEO 内容
 // ============================================
 app.get('/images/uploads/:filename', async (req, res, next) => {
   if (req.query.w) {
@@ -80,7 +74,7 @@ app.get('/images/uploads/:filename', async (req, res, next) => {
   next();
 });
 
-app.use(express.static(config.paths.public));
+app.use(express.static(config.paths.public, { index: false }));
 
 // SPA 兜底路由（后台）
 app.get('/admin', (req, res) => {
@@ -89,14 +83,6 @@ app.get('/admin', (req, res) => {
 
 app.get('/admin/*', (req, res) => {
   res.sendFile(path.join(config.paths.public, 'admin', 'index.html'));
-});
-
-// SPA 兜底路由（前台）
-app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api/') || req.path.includes('.')) {
-    return next();
-  }
-  res.sendFile(path.join(config.paths.public, 'index.html'));
 });
 
 // ============================================

@@ -45,5 +45,10 @@ module.exports = {
     paths: {
         public: path.join(__dirname, '..', 'public'),
         skills: path.join(__dirname, '..', 'skills.md')
+    },
+
+    // 前台分页配置（需与 public/js/config.js 中的 PAGE_SIZE 保持一致）
+    pagination: {
+        pageSize: 12
     }
 };

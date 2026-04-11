@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Home page -->
+    <url>
+        <loc>https://blog.axiaoke.cn/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <!-- About profile -->
+    <url>
+        <loc>https://blog.axiaoke.cn/profile</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <!-- Post: claude -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/claude.html</loc>
+        <lastmod>2026-04-11T06:15:34.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: diancan -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/diancan.html</loc>
+        <lastmod>2025-03-22T14:20:28.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-1255 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-1255.html</loc>
+        <lastmod>2024-07-30T10:40:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: alibaba -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/alibaba.html</loc>
+        <lastmod>2024-07-25T10:43:17.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: su7 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/su7.html</loc>
+        <lastmod>2024-04-07T09:00:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: smarthome -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/smarthome.html</loc>
+        <lastmod>2023-11-03T01:25:38.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: xiulian -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/xiulian.html</loc>
+        <lastmod>2023-07-26T03:05:13.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: zhuangxiu -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/zhuangxiu.html</loc>
+        <lastmod>2023-07-19T02:34:08.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: openwrt -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/openwrt.html</loc>
+        <lastmod>2023-04-23T01:01:15.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: home -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/home.html</loc>
+        <lastmod>2023-04-12T07:03:57.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-1147 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-1147.html</loc>
+        <lastmod>2022-11-23T08:33:08.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: jiuzhou -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/jiuzhou.html</loc>
+        <lastmod>2022-10-15T13:16:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: dongjun -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/dongjun.html</loc>
+        <lastmod>2022-10-06T15:08:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: loveing -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/loveing.html</loc>
+        <lastmod>2022-09-19T02:16:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: qinglou -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/qinglou.html</loc>
+        <lastmod>2022-09-03T14:59:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: ku -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/ku.html</loc>
+        <lastmod>2022-07-12T12:56:18.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-1078 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-1078.html</loc>
+        <lastmod>2022-07-05T13:36:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: chen -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/chen.html</loc>
+        <lastmod>2022-05-21T14:02:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: car -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/car.html</loc>
+        <lastmod>2022-05-19T08:03:17.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: aliyun -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/aliyun.html</loc>
+        <lastmod>2022-01-01T13:19:02.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-1044 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-1044.html</loc>
+        <lastmod>2021-12-22T03:09:12.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: huozhe -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/huozhe.html</loc>
+        <lastmod>2021-08-05T08:43:42.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: jianfang -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/jianfang.html</loc>
+        <lastmod>2021-08-03T02:25:35.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-1007 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-1007.html</loc>
+        <lastmod>2021-07-16T08:51:42.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-952 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-952.html</loc>
+        <lastmod>2021-07-01T09:06:56.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-932 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-932.html</loc>
+        <lastmod>2021-06-15T06:27:45.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-922 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-922.html</loc>
+        <lastmod>2021-06-05T15:06:05.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-894 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-894.html</loc>
+        <lastmod>2021-05-11T01:41:21.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-889 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-889.html</loc>
+        <lastmod>2021-05-02T04:27:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-882 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-882.html</loc>
+        <lastmod>2021-04-28T08:43:04.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-870 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-870.html</loc>
+        <lastmod>2021-01-31T07:29:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-833 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-833.html</loc>
+        <lastmod>2020-11-16T06:45:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-781 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-781.html</loc>
+        <lastmod>2019-12-14T05:24:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-764 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-764.html</loc>
+        <lastmod>2018-09-07T15:51:25.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-745 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-745.html</loc>
+        <lastmod>2017-09-20T07:12:24.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-674 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-674.html</loc>
+        <lastmod>2016-08-13T15:28:48.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-625 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-625.html</loc>
+        <lastmod>2016-04-09T05:14:38.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-603 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-603.html</loc>
+        <lastmod>2016-04-07T09:42:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-552 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-552.html</loc>
+        <lastmod>2016-04-05T10:30:25.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-531 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-531.html</loc>
+        <lastmod>2015-08-07T10:00:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-520 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-520.html</loc>
+        <lastmod>2015-06-24T00:23:25.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-517 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-517.html</loc>
+        <lastmod>2015-06-20T09:31:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-515 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-515.html</loc>
+        <lastmod>2015-06-10T01:40:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-507 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-507.html</loc>
+        <lastmod>2015-04-28T08:11:58.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-496 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-496.html</loc>
+        <lastmod>2015-04-16T07:41:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-493 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-493.html</loc>
+        <lastmod>2015-03-18T06:54:01.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-489 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-489.html</loc>
+        <lastmod>2015-02-04T01:11:32.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-482 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-482.html</loc>
+        <lastmod>2015-01-18T04:00:40.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-478 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-478.html</loc>
+        <lastmod>2015-01-17T07:10:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-470 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-470.html</loc>
+        <lastmod>2015-01-16T06:35:02.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-466 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-466.html</loc>
+        <lastmod>2015-01-08T00:39:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-463 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-463.html</loc>
+        <lastmod>2014-12-18T05:21:51.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-460 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-460.html</loc>
+        <lastmod>2014-12-17T09:00:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-446 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-446.html</loc>
+        <lastmod>2014-12-10T02:58:33.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-378 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-378.html</loc>
+        <lastmod>2014-10-23T06:09:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-363 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-363.html</loc>
+        <lastmod>2014-10-21T06:39:09.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-286 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-286.html</loc>
+        <lastmod>2014-01-26T02:10:44.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-245 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-245.html</loc>
+        <lastmod>2013-09-24T00:00:33.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-233 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-233.html</loc>
+        <lastmod>2013-08-31T14:18:49.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-203 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-203.html</loc>
+        <lastmod>2013-07-31T11:30:05.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-194 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-194.html</loc>
+        <lastmod>2013-07-23T11:30:35.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-192 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-192.html</loc>
+        <lastmod>2013-07-22T11:30:54.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-186 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-186.html</loc>
+        <lastmod>2013-07-17T04:00:15.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-176 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-176.html</loc>
+        <lastmod>2013-07-12T16:20:33.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-159 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-159.html</loc>
+        <lastmod>2013-07-08T09:24:03.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-155 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-155.html</loc>
+        <lastmod>2013-07-06T05:00:53.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-149 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-149.html</loc>
+        <lastmod>2013-07-05T03:11:15.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-132 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-132.html</loc>
+        <lastmod>2013-07-02T07:43:25.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-53 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-53.html</loc>
+        <lastmod>2013-04-08T03:42:49.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Post: post-32 -->
+    <url>
+        <loc>https://blog.axiaoke.cn/post/post-32.html</loc>
+        <lastmod>2013-04-02T11:55:56.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+</urlset>

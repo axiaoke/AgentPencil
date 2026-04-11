@@ -239,6 +239,11 @@ const app = createApp({
             }
         }
 
+        function updateCanonical(url) {
+            const el = document.getElementById('canonical-url');
+            if (el) el.href = url;
+        }
+
         // --- Load Categories ---
         async function loadCategories() {
             try {
@@ -286,8 +291,10 @@ const app = createApp({
                         history.replaceState({ slug }, '', newUrl);
                     }
 
-                    // Update page meta for WeChat sharing
+                    // Update page meta for SEO and social sharing
                     document.title = `${currentPost.title} - ${settings.site_title || '博客'}`;
+                    updateMeta('page-description', currentPost.excerpt || '', 'content');
+                    updateMeta('page-keywords', currentPost.keywords || '', 'content');
                     updateMeta('og-title', currentPost.title, 'content');
                     updateMeta('og-description', currentPost.excerpt || currentPost.title, 'content');
                     const shareImg = currentPost.cover_image || settings.site_logo || '/images/logo.png';
@@ -295,6 +302,7 @@ const app = createApp({
                     updateMeta('og-image', absoluteShareImg, 'content');
                     updateMeta('wechat-share-img', absoluteShareImg, 'src');
                     updateMeta('og-url', window.location.href, 'content');
+                    updateCanonical(window.location.href);
 
                     // Load comments
                     loadComments(currentPost.id);
@@ -479,12 +487,15 @@ const app = createApp({
             pagination.page = 1;
             updateUrlParams();
             document.title = settings.site_title || '博客';
+            updateMeta('page-description', settings.site_description || '', 'content');
+            updateMeta('page-keywords', settings.site_keywords || '', 'content');
             updateMeta('og-title', settings.site_title, 'content');
             updateMeta('og-description', settings.site_description, 'content');
             const defaultImg = settings.site_logo || '/images/logo.png';
             const absoluteDefaultImg = defaultImg.startsWith('http') ? defaultImg : window.location.origin + defaultImg;
             updateMeta('og-image', absoluteDefaultImg, 'content');
             updateMeta('wechat-share-img', absoluteDefaultImg, 'src');
+            updateCanonical(window.location.origin + '/');
             window.scrollTo({ top: 0, behavior: 'smooth' });
             loadPosts(1);
         }
@@ -512,6 +523,7 @@ const app = createApp({
             const absoluteDefaultImg = defaultImg.startsWith('http') ? defaultImg : window.location.origin + defaultImg;
             updateMeta('og-image', absoluteDefaultImg, 'content');
             updateMeta('wechat-share-img', absoluteDefaultImg, 'src');
+            updateCanonical(window.location.origin + '/profile');
         }
 
         function changePage(page) {

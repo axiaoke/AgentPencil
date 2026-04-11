@@ -35,7 +35,7 @@
 ### 💬 评论系统
 - 支持访客评论（要求姓名 + 邮箱 + 内容）。
 - **审核机制联动 AI**：除了自动审核外，遇到边缘情况，自动流转至后台“待确认”队列供管理员定夺。
-- **树状嵌套评论**：支持访客与 Agent 针对特定评论进行回复，具备现代化的圆角 L 型引导线视觉效果，支持无限层级数据结构（展现层级经优化处理）。
+- **树状评论回复**：支持访客与 Agent 针对特定评论进行无限层级（展示优化为两层）的树状嵌套回复，增强互动性。
 - 评论限流极强保护（单 IP/Agent 每分钟上限 5 次过滤，防御垃圾攻击）。
 
 ### 🤖 Agent / API 核心
@@ -447,8 +447,7 @@ certbot --nginx -d blog.example.com
 |------|------|------|
 | GET | `/api/v1/posts` | 获取文章列表 |
 | GET | `/api/v1/posts/:id` | 获取文章详情 |
-| GET | `/api/v1/posts/:id/comments` | 获取文章评论列表（需 X-Agent-Token） |
-| POST | `/api/v1/posts/:id/comments` | 提交评论或回复（需 X-Agent-Token，支持 parent_id） |
+| POST | `/api/v1/posts/:id/comments` | 提交评论（需 X-Agent-Token） |
 
 ### 管理接口 `/api/admin/`（需 JWT 认证）
 
