@@ -2,6 +2,9 @@
  * 文章业务逻辑服务
  */
 const Post = require('../models/Post');
+const Admin = require('../models/Admin');
+const Category = require('../models/Category');
+const config = require('../config');
 const { generateSlug } = require('../utils/helpers');
 
 const postService = {
@@ -157,6 +160,102 @@ const postService = {
      */
     async delete(id) {
         await Post.delete(id);
+    },
+
+    /**
+     * Agent - 解析作者 ID（按昵称查找，找不到则返回默认 ID=1）
+     */
+    async _resolveAuthorId(nickname) {
+        const name = nickname || config.agent.defaultAuthorNickname;
+        const admin = await Admin.findByNickname(name);
+        return admin ? admin.id : 1;
+    },
+
+    /**
+     * Agent - 解析分类 ID（按名称查找，找不到则返回 null）
+     */
+    async _resolveCategoryId(categoryName) {
+        const name = categoryName || config.agent.defaultCategoryName;
+        const category = await Category.findByName(name);
+        return category ? category.id : null;
+    },
+
+    /**
+     * Agent - 发布新文章
+     * data: { title, content, excerpt, keywords, category_name, author_nickname, status }
+     * - content 必须为 Markdown 格式
+     * - status 默认 'published'
+     * - author 默认 axiaoke
+     * - category 默认 技术文档
+     */
+    async agentCreate(data) {
+        if (!data.title || !data.content) {
+            return { error: 'title and content are required', code: 400 };
+        }
+
+        const authorId = await this._resolveAuthorId(data.author_nickname);
+        const categoryId = await this._resolveCategoryId(data.category_name);
+        const slug = generateSlug(data.title);
+        const status = data.status === 'draft' ? 'draft' : 'published';
+        const publishedAt = status === 'published' ? new Date() : null;
+
+        const id = await Post.create({
+            title: data.title,
+            slug,
+            content: data.content,
+            content_format: 'markdown',
+            excerpt: data.excerpt || '',
+            keywords: data.keywords || '',
+            cover_image: data.cover_image || '',
+            category_id: categoryId,
+            author_id: authorId,
+            status,
+            published_at: publishedAt
+        });
+
+        return { id, slug, status };
+    },
+
+    /**
+     * Agent - 编辑文章（只更新传入的字段）
+     */
+    async agentUpdate(id, data) {
+        const existing = await Post.findById(id);
+        if (!existing) {
+            return { error: 'Post not found', code: 404 };
+        }
+
+        let categoryId = existing.category_id;
+        if (data.category_name !== undefined) {
+            categoryId = await this._resolveCategoryId(data.category_name);
+        }
+
+        let authorId = existing.author_id;
+        if (data.author_nickname !== undefined) {
+            authorId = await this._resolveAuthorId(data.author_nickname);
+        }
+
+        let publishedAt = existing.published_at;
+        const status = data.status || existing.status;
+        if (status === 'published' && existing.status !== 'published') {
+            publishedAt = new Date();
+        }
+
+        await Post.update(id, {
+            title: data.title !== undefined ? data.title : existing.title,
+            slug: existing.slug,
+            content: data.content !== undefined ? data.content : existing.content,
+            content_format: 'markdown',
+            excerpt: data.excerpt !== undefined ? data.excerpt : existing.excerpt,
+            keywords: data.keywords !== undefined ? data.keywords : existing.keywords,
+            cover_image: data.cover_image !== undefined ? data.cover_image : existing.cover_image,
+            category_id: categoryId,
+            author_id: authorId,
+            status,
+            published_at: publishedAt
+        });
+
+        return { id, status };
     }
 };
 

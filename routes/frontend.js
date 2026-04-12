@@ -33,7 +33,7 @@ router.get('/profile', async (req, res) => {
 // 首页及其他所有前台 SPA 路由（含分页：/?page=2&categoryId=3）
 // 含 . 的路径（静态资源）和 /api/ 路径直接跳过，由后续中间件处理
 router.get('*', async (req, res, next) => {
-    if (req.path.startsWith('/api/') || req.path.includes('.')) {
+    if (req.path.startsWith('/api/') || req.path.startsWith('/admin') || req.path.includes('.')) {
         return next();
     }
     try {

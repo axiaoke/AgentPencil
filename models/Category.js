@@ -54,6 +54,14 @@ const Category = {
      */
     async delete(id) {
         await pool.query('DELETE FROM categories WHERE id = ?', [id]);
+    },
+
+    /**
+     * 根据名称查询分类（不区分大小写）
+     */
+    async findByName(name) {
+        const [rows] = await pool.query('SELECT * FROM categories WHERE name = ? LIMIT 1', [name]);
+        return rows[0] || null;
     }
 };
 

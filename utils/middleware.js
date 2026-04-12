@@ -70,8 +70,24 @@ const upload = multer({
     }
 });
 
+// ============================================
+// Agent 写操作鉴权中间件
+// ============================================
+function agentWriteAuth(req, res, next) {
+    const writeToken = config.agent && config.agent.writeToken;
+    if (!writeToken) {
+        return res.status(503).json({ code: 503, message: 'Agent write API is disabled (AGENT_WRITE_TOKEN not configured)' });
+    }
+    const token = req.headers['x-agent-write-token'];
+    if (!token || token !== writeToken) {
+        return res.status(401).json({ code: 401, message: 'Invalid or missing X-Agent-Write-Token header' });
+    }
+    next();
+}
+
 module.exports = {
     authMiddleware,
     commentLimiter,
-    upload
+    upload,
+    agentWriteAuth
 };

@@ -5,7 +5,8 @@ const express = require('express');
 const router = express.Router();
 const postService = require('../services/postService');
 const commentService = require('../services/commentService');
-const { commentLimiter } = require('../utils/middleware');
+const categoryService = require('../services/categoryService');
+const { commentLimiter, agentWriteAuth } = require('../utils/middleware');
 const { getClientIP } = require('../utils/helpers');
 
 // 文章列表
@@ -71,6 +72,56 @@ router.post('/posts/:id/comments', commentLimiter, async (req, res) => {
             code: 0,
             message: result.status === 'approved' ? 'Comment published' : 'Comment submitted, pending review',
             data: { id: result.id, status: result.status }
+        });
+    } catch (err) {
+        res.status(500).json({ code: 500, message: err.message });
+    }
+});
+
+// ============================================
+// 分类列表（供 Agent 查询可用分类）
+// ============================================
+router.get('/categories', async (req, res) => {
+    try {
+        const categories = await categoryService.getAll();
+        res.json({ code: 0, data: categories });
+    } catch (err) {
+        res.status(500).json({ code: 500, message: err.message });
+    }
+});
+
+// ============================================
+// 发布新文章（写操作，需要 X-Agent-Write-Token）
+// ============================================
+router.post('/posts', agentWriteAuth, async (req, res) => {
+    try {
+        const result = await postService.agentCreate(req.body);
+        if (result.error) {
+            return res.status(result.code || 400).json({ code: result.code || 400, message: result.error });
+        }
+        res.status(201).json({
+            code: 0,
+            message: result.status === 'published' ? 'Post published' : 'Post saved as draft',
+            data: result
+        });
+    } catch (err) {
+        res.status(500).json({ code: 500, message: err.message });
+    }
+});
+
+// ============================================
+// 编辑文章（写操作，需要 X-Agent-Write-Token）
+// ============================================
+router.put('/posts/:id', agentWriteAuth, async (req, res) => {
+    try {
+        const result = await postService.agentUpdate(req.params.id, req.body);
+        if (result.error) {
+            return res.status(result.code || 400).json({ code: result.code || 400, message: result.error });
+        }
+        res.json({
+            code: 0,
+            message: 'Post updated',
+            data: result
         });
     } catch (err) {
         res.status(500).json({ code: 500, message: err.message });

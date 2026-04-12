@@ -32,6 +32,14 @@ const Admin = {
      */
     async updateAvatar(id, avatarUrl) {
         await pool.query('UPDATE admins SET avatar = ? WHERE id = ?', [avatarUrl, id]);
+    },
+
+    /**
+     * 根据昵称查询管理员
+     */
+    async findByNickname(nickname) {
+        const [rows] = await pool.query('SELECT * FROM admins WHERE nickname = ? LIMIT 1', [nickname]);
+        return rows[0] || null;
     }
 };
 

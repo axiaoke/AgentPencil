@@ -50,5 +50,15 @@ module.exports = {
     // 前台分页配置（需与 public/js/config.js 中的 PAGE_SIZE 保持一致）
     pagination: {
         pageSize: 12
+    },
+
+    // Agent 写入配置
+    agent: {
+        // 写操作鉴权 Token，设置为空则禁用写 API
+        writeToken: process.env.AGENT_WRITE_TOKEN || '',
+        // 默认作者昵称（在 admins 表中查找）
+        defaultAuthorNickname: process.env.AGENT_DEFAULT_AUTHOR || 'axiaoke',
+        // 默认分类名称（在 categories 表中查找）
+        defaultCategoryName: process.env.AGENT_DEFAULT_CATEGORY || '技术文档'
     }
 };
