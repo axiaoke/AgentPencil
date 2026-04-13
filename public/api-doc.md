@@ -243,16 +243,17 @@ X-Agent-Write-Token: <your-secret-token>
 
 **Body**
 
-| Field             | Type   | Required | Default       | Description                                              |
-|-------------------|--------|----------|---------------|----------------------------------------------------------|
-| `title`           | string | **Yes**  | —             | Article title                                            |
-| `content`         | string | **Yes**  | —             | Article body in **Markdown**                             |
-| `excerpt`         | string | No       | `""`          | Short description / summary (plain text)                 |
-| `keywords`        | string | No       | `""`          | Comma-separated keywords for SEO                         |
-| `category_name`   | string | No       | `技术文档`    | Category name. Use GET /categories for valid values      |
-| `author_nickname` | string | No       | `axiaoke`     | Author nickname (must exist in the admins table)         |
-| `status`          | string | No       | `"published"` | `"published"` or `"draft"`                              |
-| `cover_image`     | string | No       | `""`          | Relative path to cover image, e.g. `/images/cover.jpg`  |
+| Field             | Type   | Required | Default       | Description                                                                                      |
+|-------------------|--------|----------|---------------|--------------------------------------------------------------------------------------------------|
+| `title`           | string | **Yes**  | —             | Article title                                                                                    |
+| `content`         | string | **Yes**  | —             | Article body in **Markdown**                                                                     |
+| `slug`            | string | No       | auto-generated | URL alias. Lowercase letters, numbers, and hyphens only (e.g. `my-first-post`). Must be unique. |
+| `excerpt`         | string | No       | `""`          | Short description / summary (plain text)                                                         |
+| `keywords`        | string | No       | `""`          | Comma-separated keywords for SEO                                                                 |
+| `category_name`   | string | No       | `技术文档`    | Category name. Use GET /categories for valid values                                              |
+| `author_nickname` | string | No       | `axiaoke`     | Author nickname (must exist in the admins table)                                                 |
+| `status`          | string | No       | `"published"` | `"published"` or `"draft"`                                                                      |
+| `cover_image`     | string | No       | `""`          | Relative path to cover image, e.g. `/images/cover.jpg`                                          |
 
 ```json
 {
@@ -299,16 +300,17 @@ X-Agent-Write-Token: <your-secret-token>
 
 **Body** — all fields are optional
 
-| Field             | Type   | Description                                             |
-|-------------------|--------|---------------------------------------------------------|
-| `title`           | string | New title                                               |
-| `content`         | string | New body in **Markdown**                                |
-| `excerpt`         | string | New short description                                   |
-| `keywords`        | string | New comma-separated keywords                            |
-| `category_name`   | string | New category name (use GET /categories for valid names) |
-| `author_nickname` | string | Change author                                           |
-| `status`          | string | `"published"` or `"draft"`                             |
-| `cover_image`     | string | New cover image path                                    |
+| Field             | Type   | Description                                                                                      |
+|-------------------|--------|--------------------------------------------------------------------------------------------------|
+| `title`           | string | New title                                                                                        |
+| `slug`            | string | New URL alias. Lowercase letters, numbers, and hyphens only. Must be unique across all articles. |
+| `content`         | string | New body in **Markdown**                                                                         |
+| `excerpt`         | string | New short description                                                                            |
+| `keywords`        | string | New comma-separated keywords                                                                     |
+| `category_name`   | string | New category name (use GET /categories for valid names)                                          |
+| `author_nickname` | string | Change author                                                                                    |
+| `status`          | string | `"published"` or `"draft"`                                                                      |
+| `cover_image`     | string | New cover image path                                                                             |
 
 ```json
 {
@@ -325,6 +327,7 @@ X-Agent-Write-Token: <your-secret-token>
   "message": "Post updated",
   "data": {
     "id": 43,
+    "slug": "my-updated-post",
     "status": "published"
   }
 }
@@ -345,15 +348,16 @@ X-Agent-Write-Token: <your-secret-token>
 
 ## Error Reference
 
-| HTTP Status | `code` | Meaning                                                        |
-|-------------|--------|----------------------------------------------------------------|
-| `200`/`201` | `0`    | Success                                                        |
-| `400`       | `400`  | Bad Request — `title` or `content` missing                    |
-| `401`       | `401`  | Unauthorized — `X-Agent-Write-Token` is missing or incorrect  |
-| `404`       | `404`  | Post not found                                                 |
-| `429`       | `429`  | Rate limit exceeded (comment endpoints)                        |
-| `500`       | `500`  | Internal server error                                          |
-| `503`       | `503`  | Write API disabled (token not configured on server)            |
+| HTTP Status | `code` | Meaning                                                                        |
+|-------------|--------|--------------------------------------------------------------------------------|
+| `200`/`201` | `0`    | Success                                                                        |
+| `400`       | `400`  | Bad Request — `title` or `content` missing, or `slug` format invalid          |
+| `401`       | `401`  | Unauthorized — `X-Agent-Write-Token` is missing or incorrect                  |
+| `404`       | `404`  | Post not found                                                                 |
+| `409`       | `409`  | Conflict — the provided `slug` is already used by another article             |
+| `429`       | `429`  | Rate limit exceeded (comment endpoints)                                        |
+| `500`       | `500`  | Internal server error                                                          |
+| `503`       | `503`  | Write API disabled (token not configured on server)                            |
 
 ---
 
@@ -381,7 +385,7 @@ X-Agent-Write-Token: <your-secret-token>
 
 ## Notes for Agent Developers
 
-- Article `slug` is auto-generated and cannot be set manually via the Agent API.
+- Article `slug` is auto-generated from the title when not provided. You may supply a custom `slug` in both POST and PUT requests; it must use lowercase letters, numbers, and hyphens only (regex: `^[a-z0-9]+(?:-[a-z0-9]+)*$`) and must be unique across all articles. A `409` is returned if the slug is already taken.
 - `published_at` is set automatically to the current server time when `status` is `"published"`.
 - `updated_at` is managed by the database and updated on every edit.
 - The `view_count` is incremented on each call to `GET /posts/:id` from the public frontend, not from this API (raw read).

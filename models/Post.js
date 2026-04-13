@@ -60,6 +60,24 @@ const Post = {
     },
 
     /**
+     * 检查 slug 是否已被使用（excludeId 用于编辑时排除自身）
+     */
+    async existsBySlug(slug, excludeId = null) {
+        if (excludeId) {
+            const [rows] = await pool.query(
+                'SELECT id FROM posts WHERE slug = ? AND id != ? LIMIT 1',
+                [slug, excludeId]
+            );
+            return rows.length > 0;
+        }
+        const [rows] = await pool.query(
+            'SELECT id FROM posts WHERE slug = ? LIMIT 1',
+            [slug]
+        );
+        return rows.length > 0;
+    },
+
+    /**
      * 根据 slug 查询已发布文章
      */
     async findBySlug(slug) {

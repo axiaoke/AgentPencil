@@ -181,8 +181,16 @@ const postService = {
     },
 
     /**
+     * 校验 slug 格式：小写字母、数字、连字符，不能以连字符开头或结尾
+     */
+    _isValidSlug(slug) {
+        return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug);
+    },
+
+    /**
      * Agent - 发布新文章
-     * data: { title, content, excerpt, keywords, category_name, author_nickname, status }
+     * data: { title, content, slug?, excerpt, keywords, category_name, author_nickname, status }
+     * - slug 可选，不传则自动生成；传入时需格式合法且全局唯一
      * - content 必须为 Markdown 格式
      * - status 默认 'published'
      * - author 默认 axiaoke
@@ -193,9 +201,22 @@ const postService = {
             return { error: 'title and content are required', code: 400 };
         }
 
+        let slug;
+        if (data.slug) {
+            if (!this._isValidSlug(data.slug)) {
+                return { error: 'Invalid slug: use lowercase letters, numbers, and hyphens only (no leading/trailing hyphens)', code: 400 };
+            }
+            const exists = await Post.existsBySlug(data.slug);
+            if (exists) {
+                return { error: `Slug "${data.slug}" is already in use`, code: 409 };
+            }
+            slug = data.slug;
+        } else {
+            slug = generateSlug(data.title);
+        }
+
         const authorId = await this._resolveAuthorId(data.author_nickname);
         const categoryId = await this._resolveCategoryId(data.category_name);
-        const slug = generateSlug(data.title);
         const status = data.status === 'draft' ? 'draft' : 'published';
         const publishedAt = status === 'published' ? new Date() : null;
 
@@ -218,11 +239,24 @@ const postService = {
 
     /**
      * Agent - 编辑文章（只更新传入的字段）
+     * data.slug 可选：传入时需格式合法且不与其他文章重复
      */
     async agentUpdate(id, data) {
         const existing = await Post.findById(id);
         if (!existing) {
             return { error: 'Post not found', code: 404 };
+        }
+
+        let slug = existing.slug;
+        if (data.slug !== undefined) {
+            if (!this._isValidSlug(data.slug)) {
+                return { error: 'Invalid slug: use lowercase letters, numbers, and hyphens only (no leading/trailing hyphens)', code: 400 };
+            }
+            const exists = await Post.existsBySlug(data.slug, id);
+            if (exists) {
+                return { error: `Slug "${data.slug}" is already in use`, code: 409 };
+            }
+            slug = data.slug;
         }
 
         let categoryId = existing.category_id;
@@ -243,7 +277,7 @@ const postService = {
 
         await Post.update(id, {
             title: data.title !== undefined ? data.title : existing.title,
-            slug: existing.slug,
+            slug,
             content: data.content !== undefined ? data.content : existing.content,
             content_format: 'markdown',
             excerpt: data.excerpt !== undefined ? data.excerpt : existing.excerpt,
@@ -255,7 +289,7 @@ const postService = {
             published_at: publishedAt
         });
 
-        return { id, status };
+        return { id, slug, status };
     }
 };
 
